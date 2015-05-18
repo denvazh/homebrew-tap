@@ -15,8 +15,7 @@ cask :v1 => 'intellij-idea-custom-jdk-bundled' do
                  ]
 
   caveats <<-EOS.undent
-    #{token} includes bundled JRE 1.8u40 custom build 
-    requires Java 6 like any other IntelliJ-based IDE.
+    #{token} includes bundled JRE 1.8u40 custom build.
 
     The vendor (JetBrains) doesn't support newer versions of Java (yet)
     due to several critical issues, see details at
