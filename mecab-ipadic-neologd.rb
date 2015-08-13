@@ -4,7 +4,7 @@ class MecabIpadicNeologd < Formula
   url "https://github.com/neologd/mecab-ipadic-neologd/archive/v0.0.2.tar.gz"
   sha256 "8490c8e0871464830c902c95a48fb50760c81f379e96186ab09f55a63873e354"
 
-  head "https://github.com/neologd/mecab-ipadic-neologd", :branch => "master"
+  head "https://github.com/neologd/mecab-ipadic-neologd.git", :branch => "master"
 
   ## Options
 
