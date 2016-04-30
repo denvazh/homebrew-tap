@@ -1,4 +1,4 @@
-cask :v1 => 'intellij-idea-custom-jdk-bundled' do
+cask 'intellij-idea-custom-jdk-bundled' do
   version '14.1.3'
   sha256 '7e5f463573b635a647337a6b61ebeae15cedd1829eabb0e2339d865325083976'
 

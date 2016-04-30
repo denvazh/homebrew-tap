@@ -1,4 +1,4 @@
-cask :v1 => 'intellij-idea-15-eap-custom-jdk-bundled' do
+cask 'intellij-idea-15-eap-custom-jdk-bundled' do
   version '143.379.11' # since its EAP it is actually a build number
   sha256 '6cf8fc266ca5405806bb43af4e4552beab49b26d1cf21c868512dc54871f6e56'
 
