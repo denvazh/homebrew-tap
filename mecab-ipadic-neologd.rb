@@ -10,7 +10,32 @@ class MecabIpadicNeologd < Formula
 
   option "with-newest", "Update mecab-ipadic-neologd during install"
   option "with-create-user-dic", "Create an user dictionary using seed data of mecab-ipadic-neologd"
+  option "with-install_all_seed_files", "If you want to install all seed files(seed/neologd-*.xz)"
+  option "with-eliminate-redundant-entry", "If you want to eliminate the redundant entries"
+
+  option "with-install_only_patched_ipadic", "If you want to install only patched IPADIC"
   option "without-adverb", "Do not install adverb entries of seed data of mecab-ipadic-neologd"
+  option "without-interject",
+    "If you would not like to install entries of orthographic variant of an interjection as seed data of mecab-ipadic-neologd"
+  option "without-noun_ortho",
+    "If you would not like to install entries of orthographic variant of a common noun as seed data of mecab-ipadic-neologd"
+  option "without-noun_sahen_conn_ortho",
+    "If you would not like to install entries of orthographic variant of a noun used as verb form(Sahen-setsuzoku) as seed data of mecab-ipadic-neologd"
+  option "without-adjective_std",
+    "If you would not like to install entries of frequent orthographic variant of an adjective as seed data of mecab-ipadic-neologd"
+  option "with-adjective_exp",
+    "If you would like to install entries of infrequent orthographic variant of an adjective as seed data of mecab-ipadic-neologd"
+  option "without-adjective_verb",
+    "If you would not like to install entries of orthographic variant of an adjective verb as seed data of mecab-ipadic-neologd"
+
+  option "with-infreq_datetime",
+    "If you would like to install infrequent entries of datetime representation type of named entity as seed data of mecab-ipadic-neologd"
+  option "with-infreq_quantity",
+    "If you would like to install infrequent entries of quantity representation type of named entity as seed data of mecab-ipadic-neologd"
+
+  option "without-ill_formed_words",
+    "If you would not like to install entries of ill formed words as seed data of mecab-ipadic-neologd"
+
 
   ## Dependencies
 
@@ -32,8 +57,56 @@ class MecabIpadicNeologd < Formula
       args << '--create_user_dic'
     end
 
+    if build.with? "install_all_seed_files"
+      args << '--install_all_seed_files'
+    end
+
+    if build.with? "install_only_patched_ipadic"
+      args << '--install_only_patched_ipadic'
+    end
+
+    if build.with? "eliminate-redundant-entry"
+      args << '--eliminate-redundant-entry'
+    end
+
     if build.without? "adverb"
       args << '--ignore_adverb'
+    end
+
+    if build.without? "interject"
+      args << '--ignore_interject'
+    end
+
+    if build.without? "noun_ortho"
+      args << '--ignore_noun_ortho'
+    end
+
+    if build.without? "noun_sahen_conn_ortho"
+      args << '--ignore_noun_sahen_conn_ortho'
+    end
+
+    if build.without? "adjective_std"
+      args << '--ignore_adjective_std'
+    end
+
+    if build.with? "adjective_exp"
+      args << '--install_adjective_exp'
+    end
+
+    if build.without? "adjective_verb"
+      args << '--ignore_adjective_verb'
+    end
+
+    if build.with? "infreq_datetime"
+      args << '--install_infreq_datetime'
+    end
+
+    if build.with? "infreq_quantity"
+      args << '--install_infreq_quantity'
+    end
+
+    if build.without? "ill_formed_words"
+      args << '--ignore_ill_formed_words'
     end
 
     system ["./bin/install-mecab-ipadic-neologd"].concat(args).join(" ")
