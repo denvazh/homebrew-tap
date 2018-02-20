@@ -1,8 +1,8 @@
 class MecabIpadicNeologd < Formula
   desc "Neologism dictionary for MeCab"
   homepage "https://github.com/neologd/mecab-ipadic-neologd"
-  url "https://github.com/neologd/mecab-ipadic-neologd/archive/v0.0.2.tar.gz"
-  sha256 "8490c8e0871464830c902c95a48fb50760c81f379e96186ab09f55a63873e354"
+  url "https://github.com/neologd/mecab-ipadic-neologd/archive/v0.0.5.tar.gz"
+  sha256 "6a16be3971bea809ae22dd9334e9f0e002e70b7c421e905a1fcd7f43be7a52d8"
 
   head "https://github.com/neologd/mecab-ipadic-neologd.git", :branch => "master"
 
@@ -22,10 +22,7 @@ class MecabIpadicNeologd < Formula
   ## Install
 
   def install
-    args = %W[
-      --forceyes
-      --asuser
-    ]
+    args = ["--prefix #{prefix}", '--forceyes', '--asuser']
 
     if build.with? "newest"
       args << '--newest'
@@ -39,23 +36,21 @@ class MecabIpadicNeologd < Formula
       args << '--ignore_adverb'
     end
 
-    system "./bin/install-mecab-ipadic-neologd", *args
+    system ["./bin/install-mecab-ipadic-neologd"].concat(args).join(" ")
   end
 
   ## Caveats
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     To use mecab with mecab-ipadic-neologd:
-      mecab -d #{File.join(HOMEBREW_PREFIX, 'opt/mecab/lib/mecab/dic/mecab-ipadic-neologd')}
+      mecab -d #{opt_prefix}
     EOS
   end
 
   ## Test
 
   test do
-    cmd = ['echo "SMAP" | mecab -d',
-      File.join(HOMEBREW_PREFIX, 'opt/mecab/lib/mecab/dic/mecab-ipadic-neologd'),
-      '|md5'].join(' ')
-    assert_equal "8fffab379d688faa56f2e1e9bb907db9", `#{cmd}`.chomp
+    cmd = ['echo "SMAP" | mecab -d', opt_prefix, '|md5'].join(' ')
+    assert_equal "207e85391d12c9750352f2ea852788d0", `#{cmd}`.chomp
   end
 end
