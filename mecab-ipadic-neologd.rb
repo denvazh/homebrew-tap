@@ -39,7 +39,7 @@ class MecabIpadicNeologd < Formula
 
   ## Dependencies
 
-  depends_on :macos => :mountain_lion
+  depends_on :macos => :mojave
   depends_on "mecab"
   depends_on "mecab-ipadic"
   depends_on "xz"
